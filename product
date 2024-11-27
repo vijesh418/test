@@ -32,19 +32,31 @@
 </header>
  
 
-<div class="recommendations">
-  <h2>WF-1000XM5 Wireless Noise Cancelling Headphones</h2>
-  <div class="product-list">
-      <div class="product-item">
-          <img src="https://via.placeholder.com/200x200/FF5733/FFFFFF?text=Product+1" alt="Product 1">
-          <h3>Product Name 1</h3>
-          <div class="price">$99.99</div>
-          <div class="buttons">
-              <button class="add-to-cart">Add to Cart</button>
-              <button class="view-details">View Details</button>
-          </div>
-      </div>
-  </div>
+
+<div class="product-container">
+    <div class="product-image">
+        <img src="https://via.placeholder.com/200x200/FF5733/FFFFFF?text=Product+1" alt="WF-1000XM5 Wireless Noise Cancelling Headphones">
+    </div>
+    <div class="product-details">
+        <h1>WF-1000XM5 Wireless Noise Cancelling Headphones</h1>
+        <p class="price">$369.00</p>
+        <div class="buttons">
+            <button class="buy-now">Buy Now</button>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<div class="overview-section">
+    <h2>Overview</h2>
+    <div class="overview-content">
+        <img src="https://via.placeholder.com/200" alt="Overview Image">
+        <p>The WF-1000XM5 features cutting-edge technology to deliver premium sound quality and the best noise-cancelling performance on the market. Real-time audio processors and high-performance mics power the specially designed driver unit for wide frequency reproduction, deep bass, and clear vocals. They are designed to immerse you in a sound so good, it feels like you’re in the studio with your favorite artists. The WF-1000XM5 headphones raise the bar for distraction-free listening and clarity.</p>
+    </div>
+    <div class="overview-content">
+        <img src="https://via.placeholder.com/200" alt="Noise Cancelling">
+        <p>The WF-1000XM5 reduces external noise over a wide bandwidth, from low to high frequencies. It contains two proprietary processors that cancel more external noise than ever, a new high-performance driver unit Dynamic Driver X, dual feedback microphones, and innovative Noise Isolation Earbud Tips for a more stable fit. Real-time noise-cancelling processing can be optimized to provide the best performance for your environment, so you will hear a big difference, especially in airplanes, trains, or buses.</p>
+    </div>
 </div>
 
 <!-- New Products -->
