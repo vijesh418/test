@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="product-container">
+        <div class="product-image">
+            <img src="product-image.jpg" alt="WF-1000XM5 Wireless Noise Cancelling Headphones">
+        </div>
+        <div class="product-details">
+            <h1>WF-1000XM5 Wireless Noise Cancelling Headphones</h1>
+            <p class="price">$369.00</p>
+            <div class="buttons">
+                <button class="buy-now">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="overview-section">
+        <h2>Overview</h2>
+        <div class="overview-content">
+            <img src="overview-image.jpg" alt="Overview Image">
+            <p>The WF-1000XM5 features cutting-edge technology to deliver premium sound quality and the best noise-cancelling performance on the market. Real-time audio processors and high-performance mics power the specially designed driver unit for wide frequency reproduction, deep bass, and clear vocals. They are designed to immerse you in a sound so good, it feels like you’re in the studio with your favorite artists. The WF-1000XM5 headphones raise the bar for distraction-free listening and clarity.</p>
+        </div>
+        <div class="overview-content">
+            <img src="noise-cancelling-image.jpg" alt="Noise Cancelling">
+            <p>The WF-1000XM5 reduces external noise over a wide bandwidth, from low to high frequencies. It contains two proprietary processors that cancel more external noise than ever, a new high-performance driver unit Dynamic Driver X, dual feedback microphones, and innovative Noise Isolation Earbud Tips for a more stable fit. Real-time noise-cancelling processing can be optimized to provide the best performance for your environment, so you will hear a big difference, especially in airplanes, trains, or buses.</p>
+        </div>
+    </div>
+</body>
+</html>
