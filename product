@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav>
+      <div>
+          <!-- Logo Image -->
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG" alt="">
+      </div>
+      <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Shop</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+      </div>
+      <div class="nav-end">
+          <a href="#"><i class="fa fa-shopping-cart"></i> My Cart</a>
+          <a href="#"><i class="fa fa-user"></i> Profile</a>
+      </div>
+  </nav>
+</header>
+ 
+
+<div class="recommendations">
+  <h2>WF-1000XM5 Wireless Noise Cancelling Headphones</h2>
+  <div class="product-list">
+      <div class="product-item">
+          <img src="https://via.placeholder.com/200x200/FF5733/FFFFFF?text=Product+1" alt="Product 1">
+          <h3>Product Name 1</h3>
+          <div class="price">$99.99</div>
+          <div class="buttons">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="view-details">View Details</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- New Products -->
+<section class="new-products">
+    <h2>New Products</h2>
+    <div class="product-list">
+        <div class="product-item">
+            <img src="https://via.placeholder.com/200" alt="New Product 1">
+            <h3>New Product 1</h3>
+            <p>$49.99</p>
+        </div>
+        <div class="product-item">
+            <img src="https://via.placeholder.com/200" alt="New Product 2">
+            <h3>New Product 2</h3>
+            <p>$59.99</p>
+        </div>
+        <div class="product-item">
+            <img src="https://via.placeholder.com/200" alt="New Product 3">
+            <h3>New Product 3</h3>
+            <p>$69.99</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div>
+            <h3>About Us</h3>
+            <p>We are a leading provider of high-quality products. Our goal is to offer the best online shopping experience.</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Email: contact@productwebsite.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+        <div class="connect">
+            <h3>Connect with Us</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Carousel -->
+<script>
+  // JavaScript for carousel functionality
+  let currentIndex = 0;
+
+  const slides = document.querySelectorAll('.carousel-images img');
+  const dots = document.querySelectorAll('.dot');
+  const totalSlides = slides.length;
+
+  // Function to show slide by index
+  function showSlide(index) {
+      if (index >= totalSlides) {
+          currentIndex = 0;
+      } else if (index < 0) {
+          currentIndex = totalSlides - 1;
+      } else {
+          currentIndex = index;
+      }
+
+      // Move the carousel images to the appropriate position
+      document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // Update dot navigation
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentIndex].classList.add('active');
+  }
+
+  // Next and Previous buttons functionality
+  document.querySelector('.next').addEventListener('click', () => {
+      showSlide(currentIndex + 1);
+  });
+
+  document.querySelector('.prev').addEventListener('click', () => {
+      showSlide(currentIndex - 1);
+  });
+
+  // Function to set the current slide by dot click
+  function currentSlide(index) {
+      showSlide(index - 1);
+  }
+
+  // Initialize carousel by showing the first slide
+  showSlide(currentIndex);
+</script>
+
+</body>
+</html>
