@@ -1,0 +1,670 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* Navbar Styling */
+/* header {
+background-color: #000; /* Dark black background for navbar 
+color: white;
+padding: 20px 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 40px;
+}
+
+header h1 {
+margin: 0;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+width: 100%;
+align-items: center;
+}
+
+.nav-links {
+display: flex;
+justify-content: center;
+gap: 30px;
+flex: 1;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+font-weight: 500;
+}
+
+.nav-end {
+display: flex;
+gap: 20px;
+}
+
+.nav-end a {
+color: white;
+text-decoration: none;
+font-weight: 500;
+} */
+
+/* Navbar styling */
+header {
+    background-color: #000;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Navbar image */
+nav div img {
+    height: 50px; /* Adjust the height of the logo */
+    width: auto;
+}
+
+/* Navigation links styling */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+/* End items (cart and profile) */
+.nav-end {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-end a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-end a i {
+    margin-right: 5px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-end {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Carousel Styles */
+/*
+.carousel {
+
+    position: relative;
+    max-width: 100%;
+    margin-top: 20px;
+}
+.carousel-inner .item {
+position: relative; /* This is needed for positioning the overlay 
+}
+
+.carousel-inner img {
+width: 100%;
+height: 500px; /* Adjust the height as necessary 
+}*/
+
+/* Promotional Overlay */
+/*
+.promo-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background 
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-align: center;
+opacity: 0;
+transition: opacity 0.3s ease-in-out; /* Fade effect 
+}
+
+.item:hover .promo-overlay {
+opacity: 1; /* Show the overlay on hover 
+}
+
+.promo-overlay h2 {
+font-size: 36px;
+margin-bottom: 10px;
+}
+
+.promo-overlay p {
+font-size: 18px;
+font-weight: 500;
+}
+.carousel-images {
+    display: flex;
+    overflow: hidden;
+}
+.carousel-images img {
+    width: 100%;
+    transition: transform 1s ease;
+}
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.carousel-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+ /* Carousel container 
+ .carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin: auto;
+}
+
+/* Carousel images 
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-images img {
+    width: 100%;
+    height: auto;
+}
+/* Navigation buttons (prev & next) 
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    z-index: 1;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Dot navigation 
+.dot-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.active {
+    background-color: #fff;
+} */
+
+/* General Layout Fix */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .carousel-section, .best-sellers {
+    margin-bottom: 30px; /* Add space between carousels */
+  }
+  
+  /* First Carousel Section */
+  .carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin: auto;
+  }
+  
+  .carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-images img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    z-index: 1;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  .dot-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  .dot {
+    height: 10px;
+    width: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .active {
+    background-color: #fff;
+  }
+  /* Best Sellers Section */
+.best-sellers-section {
+    margin-bottom: 30px; /* Adds space below this section */
+  }
+  
+  .best-sellers-container {
+    text-align: center;
+  }
+  
+  .carousel-item {
+    position: relative;
+  }
+  
+  .best-sellers-promo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Fade effect */
+  }
+  
+  .carousel-item:hover .best-sellers-promo-overlay {
+    opacity: 1; /* Show the overlay on hover */
+  }
+  
+  .best-sellers-promo-overlay h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .best-sellers-promo-overlay p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  /* Carousel Controls */
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+  }
+  
+  .left.carousel-control {
+    left: 10px;
+  }
+  
+  .right.carousel-control {
+    right: 10px;
+  }
+  
+
+  /* Second Carousel Section (Best Sellers)
+  .container {
+    text-align: center;
+  }
+  
+  .carousel-inner .item {
+    position: relative;
+  }
+  
+  .promo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Fade effect 
+  }
+  
+  .item:hover .promo-overlay {
+    opacity: 1; /* Show the overlay on hover 
+  }
+  
+  .promo-overlay h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .promo-overlay p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  /* Adjust the carousel for Best Sellers 
+  .carousel-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+  }
+  
+  .left.carousel-control {
+    left: 10px;
+  }
+  
+  .right.carousel-control {
+    right: 10px;
+  }
+   */
+
+/* Recommendation System Styles 
+.recommendations {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+.recommendations h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+.recommendations .product-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.recommendations .product-item {
+    width: 200px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+.recommendations .product-item img {
+    width: 100%;
+    border-radius: 8px;
+} */
+
+.recommendations {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.recommendations h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.recommendations .product-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow products to wrap for smaller screens */
+}
+
+.recommendations .product-item {
+    width: 200px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.recommendations .product-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.recommendations .product-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recommendations .product-item .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff5733;
+    margin-bottom: 15px;
+}
+
+.recommendations .product-item .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.recommendations .product-item .buttons button {
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.recommendations .product-item .buttons .add-to-cart {
+    background-color: #28a745;
+    color: white;
+}
+
+.recommendations .product-item .buttons .add-to-cart:hover {
+    background-color: #218838;
+}
+
+.recommendations .product-item .buttons .view-details {
+    background-color: #007bff;
+    color: white;
+}
+
+.recommendations .product-item .buttons .view-details:hover {
+    background-color: #0056b3;
+}
+
+/* Hover effect on product items */
+.recommendations .product-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .recommendations .product-item {
+        width: 150px;
+        padding: 15px;
+    }
+
+    .recommendations .product-list {
+        gap: 10px;
+    }
+}
+
+/* New Products Styles */
+.new-products {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+.new-products h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+.new-products .product-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.new-products .product-item {
+    width: 200px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+.new-products .product-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+footer {
+background-color: #000; /* Dark black background for footer */
+color: white;
+padding: 40px 20px;
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.footer-content div {
+width: 30%;
+}
+
+footer h3 {
+margin-bottom: 10px;
+font-size: 20px;
+}
+
+footer p {
+font-size: 14px;
+line-height: 1.6;
+}
+
+/* Social Media Icons Styling */
+.connect {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+
+.social-icons {
+display: flex;
+gap: 15px;
+}
+
+.social-icons a {
+color: white;
+font-size: 24px;
+text-decoration: none;
+}
+
+.social-icons a:hover {
+color: #ffcc00; /* Hover effect color */
+}
+
+/* Footer Links Styling */
+footer a {
+color: white;
+text-decoration: none;
+}
+
+footer a:hover {
+color: #ffcc00; /* Hover effect color */
+}
