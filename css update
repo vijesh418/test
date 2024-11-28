@@ -1,96 +1,54 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Product Container Styling */
-.product-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+/* Contact Page Content */
+.contact-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
     padding: 20px;
-    gap: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-image img {
-    max-width: 400px;
-    border-radius: 10px;
+.contact-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.product-details {
-    flex: 1;
-}
-
-.product-details h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.product-details .price {
-    font-size: 20px;
+.contact-container label {
     font-weight: bold;
-    color: #ff6f61;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    display: block;
 }
 
-/* Buttons Styling */
-.buttons {
-    display: flex;
-    gap: 10px;
+.contact-container input,
+.contact-container textarea,
+.contact-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
-.buy-now, .add-to-cart {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    white-space: nowrap; /* Prevent text from wrapping */
-    font-family: Arial, sans-serif;
-}
-
-.buy-now {
-    background-color: #ff6f61;
-    color: #fff;
-}
-
-.add-to-cart {
+.contact-container button {
     background-color: #333;
-    color: #fff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-/* Overview Section Styling */
-.overview-section {
-    margin: 40px 20px;
+.contact-container button:hover {
+    background-color: #555;
 }
 
-.overview-section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
+/* Form Sections */
+.form-section {
+    display: none;
 }
 
-.overview-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.overview-content img {
-    max-width: 300px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.overview-content p {
-    font-size: 16px;
-    color: #666;
-    line-height: 1.5;
-    max-width: 700px;
+.form-section.active {
+    display: block;
 }
