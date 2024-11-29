@@ -1,0 +1,22 @@
+<div class="signup-container">
+    <form class="signup-form">
+        <h2>Sign Up</h2>
+        <input type="email" placeholder="Email *" required>
+        <input type="text" placeholder="First name *" required>
+        <input type="text" placeholder="Last name *" required>
+        <input type="tel" placeholder="Mobile Phone *" required>
+        <input type="date" placeholder="Date of birth *" required>
+        <input type="password" placeholder="Password *" required>
+        <input type="password" placeholder="Confirm Password *" required>
+        <input type="text" placeholder="Sign up code (if any)">
+        <label class="checkbox-container">
+            <input type="checkbox">
+            I would like to receive the latest product information, promotional offers, and exclusive content.
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" required>
+            Yes, I agree to the <a href="#">Privacy Policy</a>, <a href="#">Rewards Terms</a>, and <a href="#">Warranty Terms</a>.
+        </label>
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
