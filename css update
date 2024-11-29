@@ -1,54 +1,62 @@
-/* Contact Page Content */
-.contact-container {
-    max-width: 800px;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.signup-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 50px auto; /* Center align */
 }
 
-.contact-container h1 {
-    text-align: center;
+.signup-form h2 {
     margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
 }
 
-.contact-container label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.contact-container input,
-.contact-container textarea,
-.contact-container select {
+.signup-form input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-.contact-container button {
-    background-color: #333;
-    color: white;
-    padding: 10px 15px;
+.signup-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
+}
+
+.signup-form button:hover {
+    background-color: #333;
+}
+
+.checkbox-container {
+    margin: 10px 0;
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 
-.contact-container button:hover {
-    background-color: #555;
+.checkbox-container input {
+    margin-right: 10px;
 }
 
-/* Form Sections */
-.form-section {
-    display: none;
+.checkbox-container a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.form-section.active {
-    display: block;
+.checkbox-container a:hover {
+    text-decoration: underline;
 }
