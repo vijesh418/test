@@ -683,12 +683,13 @@ color: #ffcc00; /* Hover effect color */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 20px;
-  gap: 20px;
+  padding: 30px;
+  padding-left: 17%;
+  gap: 30px;
 }
 
 .product-image img {
-  max-width: 400px;
+  max-width: 600px;
   border-radius: 10px;
 }
 
@@ -766,4 +767,59 @@ color: #ffcc00; /* Hover effect color */
   color: #666;
   line-height: 1.5;
   max-width: 700px;
+}
+
+/* Contact Page Content */
+.contact-container {
+  max-width: 800px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.contact-container input,
+.contact-container textarea,
+.contact-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.contact-container button {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.contact-container button:hover {
+  background-color: #555;
+}
+
+/* Form Sections */
+.form-section {
+  display: none;
+}
+
+.form-section.active {
+  display: block;
 }
