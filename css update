@@ -1,90 +1,24 @@
-/* Carousel Styles */
-.carousel-container {
-    position: relative;
-    width: 100%; /* Full width for end-to-end layout */
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 0; /* Remove rounding for full-width look */
-    box-shadow: none; /* No shadow for a flat look */
-    background: white;
-}
+<div class="section-heading">
+    <span>50% Off</span>
+</div>
 
-.carousel-wrapper {
-    overflow: hidden;
-}
-
-.carousel {
+.section-heading {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Adjust for spacing */
 }
 
-.carousel-item {
-    min-width: 33.33%; /* Show 3 items per slide */
-    box-sizing: border-box;
-    padding: 10px;
-    text-align: center;
+.section-heading::before,
+.section-heading::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000; /* Adjust color to match your design */
+    margin: 0 10px; /* Space between the text and lines */
 }
 
-.carousel-item img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    margin-bottom: 10px;
-}
-
-.price {
-    margin: 10px 0;
-}
-
-.discounted {
-    color: #e41e26;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.original {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 0.9em;
-}
-
-/* Buttons */
-button {
-    background-color: #e41e26;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #b51b1e;
-}
-
-/* Carousel Navigation */
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent; /* Transparent background */
-    color: black; /* Black arrow color */
-    border: none;
-    font-size: 2rem; /* Larger arrow size for visibility */
-    padding: 5px;
-    cursor: pointer;
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* Light transparent hover effect */
-    border-radius: 50%; /* Optional: Rounded hover effect */
+.section-heading span {
+    font-size: 24px; /* Adjust font size */
+    font-weight: bold; /* Optional: Make the text bold */
+    color: #000; /* Adjust color */
 }
