@@ -1,62 +1,111 @@
-.signup-container {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    margin: 50px auto; /* Center align */
-}
-
-.signup-form h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    text-align: center;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
     color: #333;
 }
 
-.signup-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+header {
+    background-color: #e41e26;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
 }
 
-.signup-form button {
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 33.33%; /* Show 3 items per slide */
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.carousel-item img {
     width: 100%;
-    padding: 12px;
-    background-color: #000;
-    color: #fff;
-    font-size: 16px;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.price {
+    margin: 10px 0;
+}
+
+.discounted {
+    color: #e41e26;
+    font-size: 1.2em;
     font-weight: bold;
+}
+
+.original {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* Buttons */
+button {
+    background-color: #e41e26;
+    color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
-.signup-form button:hover {
-    background-color: #333;
+button:hover {
+    background-color: #b51b1e;
 }
 
-.checkbox-container {
-    margin: 10px 0;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
+/* Carousel Navigation */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
-.checkbox-container input {
-    margin-right: 10px;
+.prev {
+    left: 10px;
 }
 
-.checkbox-container a {
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
+.next {
+    right: 10px;
 }
 
-.checkbox-container a:hover {
-    text-decoration: underline;
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
