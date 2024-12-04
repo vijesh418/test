@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Year-End Exclusive Prices At Sony Store!</h1>
+    </header>
+
+    <!-- Carousel 1: Camera -->
+    <div class="carousel-container">
+        <h2>Alpha 7 IV Full-frame Hybrid Camera</h2>
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel1">
+                <div class="carousel-item">
+                    <img src="camera1.jpg" alt="Camera 1">
+                    <p>Alpha 7 IV Body Only</p>
+                    <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera2.jpg" alt="Camera 2">
+                    <p>Alpha 7 IV with Lens Kit</p>
+                    <p class="price"><span class="discounted">$3,499.00</span> <span class="original">$4,199.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera3.jpg" alt="Camera 3">
+                    <p>Alpha 7 IV with Accessories</p>
+                    <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera4.jpg" alt="Camera 4">
+                    <p>Alpha 7 IV with Pro Kit</p>
+                    <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="prevSlide('carousel1', 3)">&#10094;</button>
+        <button class="next" onclick="nextSlide('carousel1', 3)">&#10095;</button>
+    </div>
+
+    <!-- Repeat for the other two carousels -->
+    <!-- Add similar structures for Carousel 2 (Headphones) and Carousel 3 (TV), adjusting content as needed -->
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+// Tracks the current position of each carousel
+const carouselIndices = {};
+
+// Initialize each carousel
+document.querySelectorAll('.carousel').forEach(carousel => {
+    const id = carousel.id;
+    carouselIndices[id] = 0;
+});
+
+function showSlide(carouselId, itemsPerSlide) {
+    const carousel = document.getElementById(carouselId);
+    const totalItems = carousel.querySelectorAll('.carousel-item').length;
+
+    // Ensure the index wraps around
+    const maxIndex = Math.ceil(totalItems / itemsPerSlide) - 1;
+    if (carouselIndices[carouselId] > maxIndex) {
+        carouselIndices[carouselId] = 0; // Reset to first slide
+    } else if (carouselIndices[carouselId] < 0) {
+        carouselIndices[carouselId] = maxIndex; // Go to last slide
+    }
+
+    const offset = -carouselIndices[carouselId] * 100; // Slide width is 100%
+    carousel.style.transform = `translateX(${offset}%)`;
+}
+
+function nextSlide(carouselId, itemsPerSlide) {
+    carouselIndices[carouselId]++;
+    showSlide(carouselId, itemsPerSlide);
+}
+
+function prevSlide(carouselId, itemsPerSlide) {
+    carouselIndices[carouselId]--;
+    showSlide(carouselId, itemsPerSlide);
+}
+
+// Initialize slides
+document.querySelectorAll('.carousel').forEach(carousel => {
+    const id = carousel.id;
+    showSlide(id, 3); // Set to 3 items per slide
+});
