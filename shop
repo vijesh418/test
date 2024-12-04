@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shopstyle.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav>
+      <div>
+        <a href="index.html">
+          <!-- Logo Image -->
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG" alt="">
+        </a>
+      </div>
+      <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Shop</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+      </div>
+      <div class="nav-end">
+          <a href="#"><i class="fa fa-shopping-cart"></i> My Cart</a>
+          <a href="#"><i class="fa fa-user"></i> Profile</a>
+      </div>
+  </nav>
+</header>
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Page</title>
@@ -13,29 +50,29 @@
 
     <!-- Carousel 1: Camera -->
     <div class="carousel-container">
-        <h2>Alpha 7 IV Full-frame Hybrid Camera</h2>
+        <h2>Camera</h2>
         <div class="carousel-wrapper">
             <div class="carousel" id="carousel1">
                 <div class="carousel-item">
-                    <img src="camera1.jpg" alt="Camera 1">
+                    <img src="https://via.placeholder.com/200" alt="Camera 1">
                     <p>Alpha 7 IV Body Only</p>
                     <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
                     <button>Add To Cart</button>
                 </div>
                 <div class="carousel-item">
-                    <img src="camera2.jpg" alt="Camera 2">
+                    <img src="https://via.placeholder.com/200" alt="Camera 2">
                     <p>Alpha 7 IV with Lens Kit</p>
                     <p class="price"><span class="discounted">$3,499.00</span> <span class="original">$4,199.00</span></p>
                     <button>Add To Cart</button>
                 </div>
                 <div class="carousel-item">
-                    <img src="camera3.jpg" alt="Camera 3">
+                    <img src="https://via.placeholder.com/200" alt="Camera 3">
                     <p>Alpha 7 IV with Accessories</p>
                     <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
                     <button>Add To Cart</button>
                 </div>
                 <div class="carousel-item">
-                    <img src="camera4.jpg" alt="Camera 4">
+                    <img src="https://via.placeholder.com/200" alt="Camera 4">
                     <p>Alpha 7 IV with Pro Kit</p>
                     <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
                     <button>Add To Cart</button>
@@ -46,14 +83,100 @@
         <button class="next" onclick="nextSlide('carousel1', 3)">&#10095;</button>
     </div>
 
-    <!-- Repeat for the other two carousels -->
-    <!-- Add similar structures for Carousel 2 (Headphones) and Carousel 3 (TV), adjusting content as needed -->
+        <!-- Carousel 2 :TV -->
+        <div class="carousel-container">
+            <h2>TV</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel" id="carousel2">
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="TV 1">
+                        <p>BRAVIA 1</p>
+                        <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="TV 2">
+                        <p>BRAVIA 2</p>
+                        <p class="price"><span class="discounted">$3,499.00</span> <span class="original">$4,199.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="TV 3">
+                        <p>BRAVIA 3</p>
+                        <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="TV 4">
+                        <p>BRAVIA 4</p>
+                        <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            <button class="prev" onclick="prevSlide('carousel2', 3)">&#10094;</button>
+            <button class="next" onclick="nextSlide('carousel2', 3)">&#10095;</button>
+        </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+  
+        <!-- Carousel 2 :TV -->
+        <div class="carousel-container">
+            <h2>HEADPHONES</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel" id="carousel3">
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="AUD 1">
+                        <p>XM4</p>
+                        <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="AUD 2">
+                        <p>XM5</p>
+                        <p class="price"><span class="discounted">$3,499.00</span> <span class="original">$4,199.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="AUD 3">
+                        <p>HEADPHONE 1</p>
+                        <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/200" alt="AUD 4">
+                        <p>HEADPHONE 2</p>
+                        <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            <button class="prev" onclick="prevSlide('carousel3', 3)">&#10094;</button>
+            <button class="next" onclick="nextSlide('carousel3', 3)">&#10095;</button>
+        </div>
 
+        <!-- New Products -->
+<section class="new-products">
+    <h2>New Products</h2>
+    <div class="product-list">
+        <div class="product-item">
+            <img src="https://via.placeholder.com/200" alt="New Product 1">
+            <h3>New Product 1</h3>
+            <p>$49.99</p>
+        </div>
+        <div class="product-item">
+            <img src="https://via.placeholder.com/200" alt="New Product 2">
+            <h3>New Product 2</h3>
+            <p>$59.99</p>
+        </div>
+        <div class="product-item">
+            <img src="https://via.placeholder.com/200" alt="New Product 3">
+            <h3>New Product 3</h3>
+            <p>$69.99</p>
+        </div>
+    </div>
+</section>
 
+<script>
 // Tracks the current position of each carousel
 const carouselIndices = {};
 
@@ -94,3 +217,43 @@ document.querySelectorAll('.carousel').forEach(carousel => {
     const id = carousel.id;
     showSlide(id, 3); // Set to 3 items per slide
 });
+
+</script>
+
+
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div>
+            <h3>About Us</h3>
+            <p>We are a leading provider of high-quality products. Our goal is to offer the best online shopping experience.</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Email: contact@productwebsite.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+        <div class="connect">
+            <h3>Connect with Us</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
