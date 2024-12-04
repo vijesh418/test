@@ -1,12 +1,11 @@
-
 /* Carousel Styles */
 .carousel-container {
     position: relative;
-    width: 80%;
-    margin: 20px auto;
+    width: 100%; /* Full width for end-to-end layout */
+    margin: 0 auto;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0; /* Remove rounding for full-width look */
+    box-shadow: none; /* No shadow for a flat look */
     background: white;
 }
 
@@ -69,12 +68,12 @@ button:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: transparent; /* Transparent background */
+    color: black; /* Black arrow color */
     border: none;
-    padding: 10px;
+    font-size: 2rem; /* Larger arrow size for visibility */
+    padding: 5px;
     cursor: pointer;
-    border-radius: 50%;
 }
 
 .prev {
@@ -86,5 +85,6 @@ button:hover {
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.2); /* Light transparent hover effect */
+    border-radius: 50%; /* Optional: Rounded hover effect */
 }
