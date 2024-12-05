@@ -106,6 +106,44 @@ nav div img {
     margin-right: 5px;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Hover Effects */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     nav {
@@ -823,3 +861,69 @@ color: #ffcc00; /* Hover effect color */
 .form-section.active {
   display: block;
 }
+
+/* signup Page Content */
+
+.signup-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: 50px auto; /* Center align */
+}
+
+.signup-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.signup-form button:hover {
+  background-color: #333;
+}
+
+.checkbox-container {
+  margin: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input {
+  margin-right: 10px;
+}
+
+.checkbox-container a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline;
+}
+
