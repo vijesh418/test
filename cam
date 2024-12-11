@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Camera Section</title>
+</head>
+<body>
+    <div class="camera-section">
+        <div class="text-section">
+            <h1>CAMERAS</h1>
+            <p>Explore the range of cameras packed with leading edge technology and the latest image sensors.</p>
+        </div>
+        <div class="image-section">
+            <img src="camera-placeholder.jpg" alt="Sony Cameras">
+        </div>
+    </div>
+</body>
+</html>
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light background for contrast */
+}
+
+.camera-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1d1d1f; /* Dark grey background color */
+    color: #ffffff; /* White text color */
+    padding: 20px 40px;
+    border-radius: 8px; /* Smooth edges */
+}
+
+.text-section {
+    max-width: 50%;
+}
+
+.text-section h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.text-section p {
+    margin: 10px 0 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.image-section img {
+    max-height: 100px; /* Adjust the height as necessary */
+    object-fit: contain;
+}
