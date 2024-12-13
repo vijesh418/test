@@ -21,89 +21,41 @@
         </a>
       </div>
       <div class="nav-links">
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
-          <a href="#">About Us</a>
-          <a href="#">Contact Us</a>
+        <a href="camera.html">Camera</a>
+        <a href="tv.html">TV</a>
+        <a href="audio.html">AUDIO</a>
+        <a href="shop.html">SHOP</a>
+        <a href="contact.html">Contact Us</a>
       </div>
       <div class="nav-end">
-          <a href="#"><i class="fa fa-shopping-cart"></i> My Cart</a>
-          <a href="#"><i class="fa fa-user"></i> Profile</a>
       </div>
   </nav>
 </header>
- 
 
-
- <!-- Contact Page Content -->
- <main>
-    <section class="contact-container">
-        <h1>Contact Us</h1>
-
-        <!-- Dropdown to select form type -->
-        <label for="contactType">Choose a reason:</label>
-        <select id="contactType" onchange="toggleFormSections()">
-            <option value="" disabled selected>-- Select an option --</option>
-            <option value="contactUs">Contact Us</option>
-            <option value="serviceBooking">Product Service Booking</option>
-        </select>
-
-        <!-- Contact Us Form -->
-        <div id="contactUsSection" class="form-section">
-            <h2>Contact Us</h2>
-            <form>
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required><br>
-
-                <label for="lastName">Family Name:</label>
-                <input type="text" id="lastName" name="lastName" required><br>
-
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required><br>
-
-                <label for="number">Contact No.</label>
-                <input type="tel" id="number" name="number" required><br>
-
-                <label for="description">Describe Your Enquiry:</label>
-                <textarea id="description" name="description" rows="5" required></textarea><br>
-
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
-        <!-- Product Service Booking Form -->
-        <div id="serviceBookingSection" class="form-section">
-            <h2>Product Service Booking</h2>
-            <form>
-                <label for="productModel">Product Model:</label>
-                <input type="text" id="productModel" name="productModel" required><br>
-
-                <label for="serialNumber">Serial Number / IMEI:</label>
-                <input type="text" id="serialNumber" name="serialNumber" required><br>
-
-                <label for="purchaseDate">Date of Purchase:</label>
-                <input type="date" id="purchaseDate" name="purchaseDate" required><br>
-
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required><br>
-
-                <label for="lastName">Family Name:</label>
-                <input type="text" id="lastName" name="lastName" required><br>
-
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required><br>
-
-                <label for="number">Contact No.</label>
-                <input type="tel" id="number" name="number" required><br>
-
-                <label for="address">Address (Primary):</label>
-                <textarea id="address" name="address" rows="3" required></textarea><br>
-
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </section>
-</main>
+<body style="background-image: url(background/banner-login.jpg);background-size: cover;background-position:70%;">
+    <div class="signup-container" style="margin-left: 600px;">
+        <form class="signup-form">
+            <h2>Sign Up</h2>
+            <input type="email" placeholder="Email *" required>
+            <input type="text" placeholder="First name *" required>
+            <input type="text" placeholder="Last name *" required>
+            <input type="tel" placeholder="Mobile Phone *" required>
+            <input type="date" placeholder="Date of birth *" required>
+            <input type="password" placeholder="Password *" required>
+            <input type="password" placeholder="Confirm Password *" required>
+            <input type="text" placeholder="Sign up code (if any)">
+            <label class="checkbox-container">
+                <input type="checkbox">
+                I would like to receive the latest product information, promotional offers, and exclusive content.
+            </label>
+            <label class="checkbox-container">
+                <input type="checkbox" required>
+                Yes, I agree to <a href="#">Privacy Policy</a>, <a href="#">Rewards Terms</a>, and <a href="#">Warranty Terms</a>.
+            </label>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
 
 
 <!-- Footer -->
@@ -137,65 +89,4 @@
         </div>
     </div>
 </footer>
-
-<!-- JavaScript for Carousel -->
-<script>
-  // JavaScript for carousel functionality
-  let currentIndex = 0;
-
-  const slides = document.querySelectorAll('.carousel-images img');
-  const dots = document.querySelectorAll('.dot');
-  const totalSlides = slides.length;
-
-  // Function to show slide by index
-  function showSlide(index) {
-      if (index >= totalSlides) {
-          currentIndex = 0;
-      } else if (index < 0) {
-          currentIndex = totalSlides - 1;
-      } else {
-          currentIndex = index;
-      }
-
-      // Move the carousel images to the appropriate position
-      document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
-
-      // Update dot navigation
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[currentIndex].classList.add('active');
-  }
-
-  // Next and Previous buttons functionality
-  document.querySelector('.next').addEventListener('click', () => {
-      showSlide(currentIndex + 1);
-  });
-
-  document.querySelector('.prev').addEventListener('click', () => {
-      showSlide(currentIndex - 1);
-  });
-
-  // Function to set the current slide by dot click
-  function currentSlide(index) {
-      showSlide(index - 1);
-  }
-
-  // Initialize carousel by showing the first slide
-  showSlide(currentIndex);
-
-
-
-  function toggleFormSections() {
-            const contactType = document.getElementById('contactType').value;
-            document.getElementById('contactUsSection').classList.remove('active');
-            document.getElementById('serviceBookingSection').classList.remove('active');
-
-            if (contactType === 'contactUs') {
-                document.getElementById('contactUsSection').classList.add('active');
-            } else if (contactType === 'serviceBooking') {
-                document.getElementById('serviceBookingSection').classList.add('active');
-            }
-        }
-</script>
-
-</body>
 </html>
