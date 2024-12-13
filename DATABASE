@@ -1,0 +1,110 @@
+<script>
+    document.getElementById("signup-form").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent form from submitting traditionally
+
+        // Get form data
+        const formData = new FormData(event.target);
+        const data = {
+            email: formData.get("email"),
+            first_name: formData.get("first_name"),
+            last_name: formData.get("last_name"),
+            phone: formData.get("phone"),
+            dob: formData.get("dob"),
+            password: formData.get("password"),
+            confirm_password: formData.get("confirm_password"),
+        };
+
+        // Send data to backend
+        const response = await fetch("http://localhost:3000/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        // Handle the response
+        const result = await response.json();
+        if (response.ok) {
+            alert("Sign up successful!");
+        } else {
+            alert("Error: " + result.error);
+        }
+    });
+</script>
+
+
+<form class="signup-form" id="signup-form">
+    <h2>Sign Up</h2>
+    <input type="email" name="email" placeholder="Email *" required>
+    <input type="text" name="first_name" placeholder="First name *" required>
+    <input type="text" name="last_name" placeholder="Last name *" required>
+    <input type="tel" name="phone" placeholder="Mobile Phone *" required>
+    <input type="date" name="dob" placeholder="Date of birth *" required>
+    <input type="password" name="password" placeholder="Password *" required>
+    <input type="password" name="confirm_password" placeholder="Confirm Password *" required>
+    <label class="checkbox-container">
+        <input type="checkbox">
+        I would like to receive the latest product information, promotional offers, and exclusive content.
+    </label>
+    <label class="checkbox-container">
+        <input type="checkbox" required>
+        Yes, I agree to <a href="#">Privacy Policy</a>, <a href="#">Rewards Terms</a>, and <a href="#">Warranty Terms</a>.
+    </label>
+    <button type="submit">Sign Up</button>
+</form>
+
+
+const express = require("express");
+const mysql = require("mysql2");
+const bcrypt = require("bcrypt");
+
+const app = express();
+app.use(express.json());
+
+// MySQL Connection
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root", // Replace with your MySQL username
+    password: "", // Replace with your MySQL password
+    database: "headphones_store",
+});
+
+db.connect(err => {
+    if (err) {
+        console.error("Error connecting to MySQL:", err.message);
+        return;
+    }
+    console.log("Connected to MySQL database");
+});
+
+// Signup Endpoint
+app.post("/signup", async (req, res) => {
+    const { email, first_name, last_name, phone, dob, password, confirm_password } = req.body;
+
+    // Check if passwords match
+    if (password !== confirm_password) {
+        return res.status(400).json({ error: "Passwords do not match" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert into database
+    const sql = "INSERT INTO users (email, first_name, last_name, phone, dob, password) VALUES (?, ?, ?, ?, ?, ?)";
+    db.query(
+        sql,
+        [email, first_name, last_name, phone, dob, hashedPassword],
+        (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: "Error signing up" });
+            }
+            res.status(201).json({ message: "Signup successful", userId: result.insertId });
+        }
+    );
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
