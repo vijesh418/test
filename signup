@@ -43,7 +43,6 @@
             <input type="date" placeholder="Date of birth *" required>
             <input type="password" placeholder="Password *" required>
             <input type="password" placeholder="Confirm Password *" required>
-            <input type="text" placeholder="Sign up code (if any)">
             <label class="checkbox-container">
                 <input type="checkbox">
                 I would like to receive the latest product information, promotional offers, and exclusive content.
