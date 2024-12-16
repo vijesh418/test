@@ -10,7 +10,10 @@
     <div class="login-container">
         <div class="login-box">
             <h2>Login</h2>
-            <form action="/login" method="POST">
+            <!-- Added a placeholder for alerts -->
+            <div id="alertBox" style="color: red; font-weight: bold;"></div>
+            
+            <form id="loginForm" action="/login" method="POST">
                 <div class="textbox">
                     <input type="text" placeholder="Username" name="username" required>
                 </div>
@@ -26,5 +29,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const alertBox = document.getElementById("alertBox");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent form from directly submitting
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alertBox.style.color = "green";
+                    alertBox.textContent = "Login successful!";
+                    setTimeout(() => {
+                        window.location.href = "/index.html"; // Redirect to index.html
+                    }, 1500);
+                } else {
+                    alertBox.style.color = "red";
+                    alertBox.textContent = result.error || "Invalid username or password.";
+                }
+            } catch (error) {
+                alertBox.style.color = "red";
+                alertBox.textContent = "An error occurred. Please try again.";
+            }
+        });
+    </script>
 </body>
 </html>
