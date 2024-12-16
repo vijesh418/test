@@ -309,26 +309,24 @@ function showSlides(n) {
     fetch('/session-status')
         .then(response => response.json())
         .then(data => {
-            const loginRegisterLink = document.querySelector('#login-register-link');
-            const dropdownContent = document.querySelector('.dropdown-content');
-
+            const dropdownContent = document.querySelector('#dropdown-content');
+            const userIcon = document.querySelector('#user-icon');
+            
             if (data.loggedIn) {
-                // Hide Login/Register button and show Profile and Logout buttons
-                loginRegisterLink.style.display = 'none';  // Hide Login/Register
+                // Update dropdown for logged-in user
                 dropdownContent.innerHTML = `
                     <a href="profile.html">Profile</a>
                     <a href="#" id="logout">Logout</a>
                 `;
                 
-                // Logout functionality
+                // Add logout functionality
                 document.querySelector('#logout').addEventListener('click', (e) => {
                     e.preventDefault();
                     fetch('/logout', { method: 'POST' })
                         .then(() => window.location.href = '/index.html');
                 });
             } else {
-                // Show Login/Register button
-                loginRegisterLink.style.display = 'block';
+                // Default dropdown content for logged-out user
                 dropdownContent.innerHTML = `
                     <a href="login.html">LOGIN</a>
                     <a href="signup.html">REGISTER</a>
