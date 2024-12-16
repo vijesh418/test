@@ -304,27 +304,35 @@ function showSlides(n) {
 </html>
 
 
-
 <script>
     // Check login status
     fetch('/session-status')
         .then(response => response.json())
         .then(data => {
-            if (data.loggedIn) {
-                // Hide "Login/Register" buttons
-                document.querySelector('.dropdown').style.display = 'none';
+            const loginRegisterLink = document.querySelector('#login-register-link');
+            const dropdownContent = document.querySelector('.dropdown-content');
 
-                // Add a "Logout" button
-                const navEnd = document.querySelector('.nav-end');
-                const logoutButton = document.createElement('a');
-                logoutButton.textContent = 'Logout';
-                logoutButton.href = '/logout';
-                logoutButton.onclick = (e) => {
+            if (data.loggedIn) {
+                // Hide Login/Register button and show Profile and Logout buttons
+                loginRegisterLink.style.display = 'none';  // Hide Login/Register
+                dropdownContent.innerHTML = `
+                    <a href="profile.html">Profile</a>
+                    <a href="#" id="logout">Logout</a>
+                `;
+                
+                // Logout functionality
+                document.querySelector('#logout').addEventListener('click', (e) => {
                     e.preventDefault();
                     fetch('/logout', { method: 'POST' })
                         .then(() => window.location.href = '/index.html');
-                };
-                navEnd.appendChild(logoutButton);
+                });
+            } else {
+                // Show Login/Register button
+                loginRegisterLink.style.display = 'block';
+                dropdownContent.innerHTML = `
+                    <a href="login.html">LOGIN</a>
+                    <a href="signup.html">REGISTER</a>
+                `;
             }
         })
         .catch(err => console.error('Error fetching session status:', err));
