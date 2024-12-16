@@ -302,3 +302,30 @@ function showSlides(n) {
 
 </body>
 </html>
+
+
+
+<script>
+    // Check login status
+    fetch('/session-status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                // Hide "Login/Register" buttons
+                document.querySelector('.dropdown').style.display = 'none';
+
+                // Add a "Logout" button
+                const navEnd = document.querySelector('.nav-end');
+                const logoutButton = document.createElement('a');
+                logoutButton.textContent = 'Logout';
+                logoutButton.href = '/logout';
+                logoutButton.onclick = (e) => {
+                    e.preventDefault();
+                    fetch('/logout', { method: 'POST' })
+                        .then(() => window.location.href = '/index.html');
+                };
+                navEnd.appendChild(logoutButton);
+            }
+        })
+        .catch(err => console.error('Error fetching session status:', err));
+</script>
