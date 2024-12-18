@@ -200,7 +200,27 @@
             <button class="next" onclick="nextSlide('carousel3', 3)">&#10095;</button>
         </div>
 
-
+        <!-- New Products -->
+<section class="new-products">
+    <h2 >New Products</h2>
+    <div class="product-list">
+        <div class="product-item">
+            <img src="audio/4_D.jpg" style="width: 180px;height: 150px; object-fit: cover;" alt="New Product 1">
+            <h3>New Product 1</h3>
+            <p>$49.99</p>
+        </div>
+        <div class="product-item">
+            <img src="camera/CX64210_VCT-SGR1_Selfie_01-removebg-preview_300x.jpg" alt="New Product 2">
+            <h3>New Product 2</h3>
+            <p>$59.99</p>
+        </div>
+        <div class="product-item">
+            <img src="audio/WH-ULT900NBlackMAIN_600x.jpg" alt="New Product 3">
+            <h3>New Product 3</h3>
+            <p>$69.99</p>
+        </div>
+    </div>
+</section>
 
 <script>
 // Tracks the current position of each carousel
