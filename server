@@ -86,7 +86,7 @@ app.post("/login", (req, res) => {
             req.session.user = results[0];
             return res.redirect("/index.html");
         } else {
-            res.status(401).json({ error: "Invalid username or password" });
+            res.redirect("/login?error=Invalid username or password");
         }
     });
 });
