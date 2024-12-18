@@ -1,0 +1,237 @@
+Here’s how you can proceed by keeping your existing structure and making the necessary modifications for **shop** and **cart** functionalities:  
+
+---
+
+### 1. **Database Tables for Shop and Cart**
+
+#### Add a `products` table for the shop:  
+```sql
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    image_url VARCHAR(255)
+);
+```
+
+#### Add a `cart` table for managing user carts:  
+```sql
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+```
+
+---
+
+### 2. **Server Modifications**
+
+Update your `server.js` to include endpoints for shop and cart management:  
+
+#### a. **Serve the shop page and fetch products**  
+Add an endpoint to fetch all products:  
+```javascript
+// Fetch all products
+app.get("/shop", (req, res) => {
+    const sql = "SELECT * FROM products";
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Error fetching products" });
+        }
+        res.json(results); // Send products as JSON
+    });
+});
+```
+
+---
+
+#### b. **Cart Functionality**  
+
+##### Add a product to the cart:  
+```javascript
+app.post("/cart", (req, res) => {
+    const { product_id, quantity } = req.body;
+
+    // Ensure the user is logged in
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Please login to add items to the cart" });
+    }
+
+    const sql = `
+        INSERT INTO cart (user_id, product_id, quantity)
+        VALUES (?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+        quantity = quantity + VALUES(quantity)
+    `;
+
+    db.query(sql, [req.session.user.id, product_id, quantity], (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Error adding to cart" });
+        }
+        res.json({ message: "Item added to cart" });
+    });
+});
+```
+
+##### Fetch all items in the user's cart:  
+```javascript
+app.get("/cart", (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Please login to view your cart" });
+    }
+
+    const sql = `
+        SELECT c.id, p.name, p.description, p.price, p.image_url, c.quantity
+        FROM cart c
+        JOIN products p ON c.product_id = p.id
+        WHERE c.user_id = ?
+    `;
+
+    db.query(sql, [req.session.user.id], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Error fetching cart items" });
+        }
+        res.json(results);
+    });
+});
+```
+
+##### Remove an item from the cart:  
+```javascript
+app.delete("/cart/:id", (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Please login to modify your cart" });
+    }
+
+    const sql = "DELETE FROM cart WHERE id = ? AND user_id = ?";
+    db.query(sql, [req.params.id, req.session.user.id], (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Error removing item from cart" });
+        }
+        res.json({ message: "Item removed from cart" });
+    });
+});
+```
+
+---
+
+### 3. **Frontend Integration**
+
+#### a. **Shop Page (`shop.html`)**  
+
+Update your shop page to fetch products dynamically:  
+```html
+<script>
+    // Fetch products from the server
+    fetch("/shop")
+        .then((response) => response.json())
+        .then((products) => {
+            const shopContainer = document.getElementById("shop-container");
+            products.forEach((product) => {
+                shopContainer.innerHTML += `
+                    <div class="product">
+                        <img src="${product.image_url}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <span>Price: $${product.price}</span>
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                `;
+            });
+        });
+
+    // Add product to cart
+    function addToCart(productId) {
+        fetch("/cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ product_id: productId, quantity: 1 }),
+        })
+            .then((response) => response.json())
+            .then((data) => alert(data.message))
+            .catch((error) => console.error("Error adding to cart:", error));
+    }
+</script>
+
+<div id="shop-container"></div>
+```
+
+---
+
+#### b. **Cart Page (`cart.html`)**  
+
+Update your cart page to fetch cart items dynamically:  
+```html
+<script>
+    // Fetch cart items
+    fetch("/cart")
+        .then((response) => response.json())
+        .then((cartItems) => {
+            const cartContainer = document.getElementById("cart-container");
+            let total = 0;
+
+            cartItems.forEach((item) => {
+                total += item.price * item.quantity;
+                cartContainer.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image_url}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <span>Price: $${item.price}</span>
+                        <span>Quantity: ${item.quantity}</span>
+                        <button onclick="removeFromCart(${item.id})">Remove</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById("total").innerText = `Total: $${total}`;
+        });
+
+    // Remove item from cart
+    function removeFromCart(cartId) {
+        fetch(`/cart/${cartId}`, { method: "DELETE" })
+            .then((response) => response.json())
+            .then((data) => {
+                alert(data.message);
+                location.reload();
+            })
+            .catch((error) => console.error("Error removing from cart:", error));
+    }
+</script>
+
+<div id="cart-container"></div>
+<h2 id="total"></h2>
+```
+
+---
+
+### 4. **Run the Application**
+
+Start the server:
+```bash
+node server.js
+```
+
+Visit these pages:
+- **Shop**: `http://localhost:3000/shop.html`
+- **Cart**: `http://localhost:3000/cart.html`
+
+---
+
+### Summary of Changes
+1. Added `products` and `cart` tables.
+2. Added endpoints for fetching products, adding to the cart, viewing the cart, and removing items.
+3. Updated the shop and cart pages to interact dynamically with the backend.
+
+Let me know if you need further assistance!
