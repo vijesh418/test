@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+          <div>
+            <a href="index.html">
+              <!-- Logo Image -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG" alt="Logo">
+            </a>
+          </div>
+          <div class="nav-links">
+              <a href="camera.html">Camera</a>
+              <a href="#">TV</a>
+              <a href="#">AUDIO</a>
+              <a href="shop.html">SHOP</a>
+              <a href="contact.html">Contact Us</a>
+          </div>
+            <div class="nav-end">
+                <a href="Cart.html"><i class="fa fa-shopping-cart"></i></a>
+                <div class="dropdown">
+                  <a href="#"><i class="fa fa-user"></i>LOGIN/REGISTER</a>
+                  <div class="dropdown-content">
+                      <a href="login.html">LOGIN</a>
+                      <a href="profile.html">PROFILE</a>
+                      <a href="signup.html">REGISTER</a>
+                  </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <!-- Cart Table -->
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cart Item 1 -->
+                <tr>
+                    <td>
+                        <img src="https://via.placeholder.com/60" alt="Product Image">
+                        <span class="cart-item-name">Product 1</span>
+                        <p class="cart-item-price">$15.00</p>
+                    </td>
+                    <td>$15.00</td>
+                    <td>
+                        <input type="number" value="1" min="1" max="10" style="width: 60px;">
+                    </td>
+                    <td>$15.00</td>
+                </tr>
+
+                <!-- Cart Item 2 -->
+                <tr>
+                    <td>
+                        <img src="https://via.placeholder.com/60" alt="Product Image">
+                        <span class="cart-item-name">Product 2</span>
+                        <p class="cart-item-price">$25.00</p>
+                    </td>
+                    <td>$25.00</td>
+                    <td>
+                        <input type="number" value="1" min="1" max="10" style="width: 60px;">
+                    </td>
+                    <td>$25.00</td>
+                </tr>
+
+                <!-- Cart Item 3 -->
+                <tr>
+                    <td>
+                        <img src="https://via.placeholder.com/60" alt="Product Image">
+                        <span class="cart-item-name">Product 3</span>
+                        <p class="cart-item-price">$10.00</p>
+                    </td>
+                    <td>$10.00</td>
+                    <td>
+                        <input type="number" value="1" min="1" max="10" style="width: 60px;">
+                    </td>
+                    <td>$10.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Cart Total -->
+        <div class="cart-total">
+            <span>Total:</span>
+            <span>$50.00</span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <a href="#" class="continue-shopping">Continue Shopping</a>
+            <a href="payment.html">Proceed to Payment</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>About Us</h3>
+                <p>We are a leading provider of high-quality products. Our goal is to offer the best online shopping experience.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: contact@productwebsite.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+            <div class="connect">
+                <h3>Connect with Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+</body>
+
+</html>
