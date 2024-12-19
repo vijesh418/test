@@ -119,7 +119,9 @@ app.get("/session-status", (req, res) => {
 // Add product to cart or update quantity
 app.post('/add-to-cart', (req, res) => {
     const { product_id } = req.body;
-    const user_id = req.session.user?.id; // Get logged-in user's id from session
+  
+    // Get the logged-in user's id from session or JWT (this is a placeholder)
+    const user_id = req.session.user?.id; // Replace with actual user authentication method
   
     if (!user_id) {
       return res.status(401).json({ error: 'User not logged in' });
@@ -144,9 +146,10 @@ app.post('/add-to-cart', (req, res) => {
         });
       }
     });
-});
+  });
 
-// Get products in cart for the logged-in user
+
+  // Get products in cart for the logged-in user
 app.get('/cart', (req, res) => {
     const user_id = req.session.user?.id;
 
