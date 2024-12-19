@@ -1,111 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="cart.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-          <div>
-            <a href="index.html">
-              <!-- Logo Image -->
-              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG" alt="Logo">
-            </a>
-          </div>
-          <div class="nav-links">
-              <a href="camera.html">Camera</a>
-              <a href="#">TV</a>
-              <a href="#">AUDIO</a>
-              <a href="shop.html">SHOP</a>
-              <a href="contact.html">Contact Us</a>
-          </div>
-            <div class="nav-end">
-                <a href="Cart.html"><i class="fa fa-shopping-cart"></i></a>
-                <div class="dropdown">
-                  <a href="#"><i class="fa fa-user"></i>LOGIN/REGISTER</a>
-                  <div class="dropdown-content">
-                      <a href="login.html">LOGIN</a>
-                      <a href="profile.html">PROFILE</a>
-                      <a href="signup.html">REGISTER</a>
-                  </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h1>Your Shopping Cart</h1>
-
-        <!-- Cart Table -->
-        <table class="cart-table" id="cart-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Remove</th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <!-- Cart items will be inserted here dynamically -->
-            </tbody>
-        </table>
-
-        <!-- Cart Total -->
-        <div class="cart-total">
-            <span>Total:</span>
-            <span id="total-price">$0.00</span>
-        </div>
-
-        <!-- Buttons -->
-        <div class="buttons">
-            <a href="shop.html" class="continue-shopping">Continue Shopping</a>
-            <a href="payment.html">Proceed to Payment</a>
-        </div>
+<td>
+    <div class="quantity-container">
+        <button class="quantity-decrease" data-id="${item.id}">-</button>
+        <span class="quantity-display">${item.quantity}</span>
+        <button class="quantity-increase" data-id="${item.id}">+</button>
     </div>
+</td>
 
-    <footer>
-        <div class="footer-content">
-            <div>
-                <h3>About Us</h3>
-                <p>We are a leading provider of high-quality products. Our goal is to offer the best online shopping experience.</p>
-            </div>
-            <div>
-                <h3>Contact Us</h3>
-                <p>Email: contact@productwebsite.com</p>
-                <p>Phone: (123) 456-7890</p>
-            </div>
-            <div class="connect">
-                <h3>Connect with Us</h3>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a href="https://www.twitter.com" target="_blank">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="https://www.linkedin.com" target="_blank">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-       $(document).ready(function() {
+<script>
+$(document).ready(function () {
     function fetchCart() {
-        $.get('/cart', function(cart) {
+        $.get('/cart', function (cart) {
             updateCart(cart);
         });
     }
@@ -126,7 +30,11 @@
                     </td>
                     <td>$${item.price}</td>
                     <td>
-                        <input type="number" value="${item.quantity}" min="1" max="10" class="quantity" data-id="${item.id}">
+                        <div class="quantity-container">
+                            <button class="quantity-decrease" data-id="${item.id}">-</button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-increase" data-id="${item.id}">+</button>
+                        </div>
                     </td>
                     <td>$${totalPrice.toFixed(2)}</td>
                     <td><button class="remove-item" data-id="${item.id}">Remove</button></td>
@@ -139,36 +47,46 @@
     }
 
     // Update quantity
-    $('#cart-items').on('change', '.quantity', function() {
-        const cart_item_id = $(this).data('id');
-        const quantity = $(this).val();
+    $('#cart-items').on('click', '.quantity-increase, .quantity-decrease', function () {
+        const button = $(this);
+        const cart_item_id = button.data('id');
+        const isIncrease = button.hasClass('quantity-increase');
+        const quantityDisplay = button.siblings('.quantity-display');
+        let currentQuantity = parseInt(quantityDisplay.text());
 
-        $.post('/cart-action', { action: 'update', cart_item_id, quantity }, function(response) {
+        currentQuantity = isIncrease ? currentQuantity + 1 : currentQuantity - 1;
+
+        if (currentQuantity < 1) {
+            alert('Quantity cannot be less than 1');
+            return;
+        }
+
+        quantityDisplay.text(currentQuantity);
+
+        $.post('/cart-action', { action: 'update', cart_item_id, quantity: currentQuantity }, function (response) {
             updateCart(response.cart);
+        }).fail(function () {
+            alert('Error updating quantity.');
         });
     });
 
     // Remove item
- // Correct event delegation
-$('#cart-items').on('click', '.remove-item', function() {
-    const cart_item_id = $(this).data('id'); // Get the item ID from the button
+    $('#cart-items').on('click', '.remove-item', function () {
+        const cart_item_id = $(this).data('id');
 
-    // Send a request to remove the item
-    $.post('/remove-from-cart', { cart_item_id }, function(response) {
-        if (response.error) {
-            alert('Failed to remove item from cart.');
-        } else {
-            fetchCart(); // Refresh the cart
-        }
-    }).fail(function() {
-        alert('Error removing item.');
+        $.post('/remove-from-cart', { cart_item_id }, function (response) {
+            if (response.error) {
+                alert('Failed to remove item from cart.');
+            } else {
+                fetchCart();
+            }
+        }).fail(function () {
+            alert('Error removing item.');
+        });
     });
-});
 
     // Initial fetch
     fetchCart();
 });
-    </script>
-</body>
+</script>
 
-</html>
