@@ -1,4 +1,109 @@
-$(document).ready(function() {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+          <div>
+            <a href="index.html">
+              <!-- Logo Image -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG" alt="Logo">
+            </a>
+          </div>
+          <div class="nav-links">
+              <a href="camera.html">Camera</a>
+              <a href="#">TV</a>
+              <a href="#">AUDIO</a>
+              <a href="shop.html">SHOP</a>
+              <a href="contact.html">Contact Us</a>
+          </div>
+            <div class="nav-end">
+                <a href="Cart.html"><i class="fa fa-shopping-cart"></i></a>
+                <div class="dropdown">
+                  <a href="#"><i class="fa fa-user"></i>LOGIN/REGISTER</a>
+                  <div class="dropdown-content">
+                      <a href="login.html">LOGIN</a>
+                      <a href="profile.html">PROFILE</a>
+                      <a href="signup.html">REGISTER</a>
+                  </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <!-- Cart Table -->
+        <table class="cart-table" id="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be inserted here dynamically -->
+            </tbody>
+        </table>
+
+        <!-- Cart Total -->
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="total-price">$0.00</span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <a href="shop.html" class="continue-shopping">Continue Shopping</a>
+            <a href="payment.html">Proceed to Payment</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>About Us</h3>
+                <p>We are a leading provider of high-quality products. Our goal is to offer the best online shopping experience.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: contact@productwebsite.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+            <div class="connect">
+                <h3>Connect with Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       $(document).ready(function() {
     function fetchCart() {
         $.get('/cart', function(cart) {
             updateCart(cart);
@@ -55,3 +160,7 @@ $(document).ready(function() {
     // Initial fetch
     fetchCart();
 });
+    </script>
+</body>
+
+</html>
