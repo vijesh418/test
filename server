@@ -1,122 +1,55 @@
-const express = require("express");
-const mysql = require("mysql2");
-const path = require("path");
-const session = require("express-session");
-
+const express = require('express');
+const mysql = require('mysql');
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // To parse form data
+const port = 3000;
 
-// Serve static files from the current directory
-app.use(express.static(path.join(__dirname))); // Serves files from the root project folder
-
-// MySQL Connection
+// Set up the database connection
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root", // Replace with your MySQL username
-    password: "sony123", // Replace with your MySQL password
-    database: "mydb",
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'mydb'
 });
 
 db.connect(err => {
-    if (err) {
-        console.error("Error connecting to MySQL:", err.message);
-        return;
-    }
-    console.log("Connected to MySQL database");
+  if (err) throw err;
+  console.log('Connected to the database');
 });
 
-// Configure sessions
-app.use(
-    session({
-        secret: "yourSecretKey",
-        resave: false,
-        saveUninitialized: true,
-    })
-);
+app.use(express.json());  // Middleware to parse JSON requests
 
-// Serve the signup.html file
-app.get("/signup", (req, res) => {
-    res.sendFile(path.join(__dirname, "signup.html")); // Ensure signup.html is in the same directory as server.js
-});
+// Add product to cart or update quantity
+app.post('/add-to-cart', (req, res) => {
+  const { product_id } = req.body;
 
-// Signup Endpoint
-app.post("/signup", (req, res) => {
-    const { email, first_name, last_name, phone, dob, password, confirm_password } = req.body;
+  // Get the logged-in user's id from session or JWT (this is a placeholder)
+  const user_id = req.session.user_id; // Replace with actual user authentication method
 
-    // Check if passwords match
-    if (password !== confirm_password) {
-        return res.status(400).json({ error: "Passwords do not match" });
-    }
+  if (!user_id) {
+    return res.status(401).json({ error: 'User not logged in' });
+  }
 
-    // Insert into database
-    const sql = "INSERT INTO users (email, first_name, last_name, phone, dob, password) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(
-        sql,
-        [email, first_name, last_name, phone, dob, password],
-        (err, result) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: "Error signing up" });
-            }
-            res.status(201).json({ message: "Signup successful", userId: result.insertId });
-        }
-    );
-});
+  // Check if the product is already in the cart
+  db.query('SELECT * FROM cart WHERE user_id = ? AND product_id = ?', [user_id, product_id], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Database error' });
 
-// Serve the login.html file
-app.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, "login.html")); // Ensure login.html is in the same directory as server.js
-});
-
-// Login Endpoint
-app.post("/login", (req, res) => {
-    const { username, password } = req.body;
-
-    // Query database for user credentials
-    const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-    db.query(sql, [username, password], (err, results) => {
-        if (err) {
-            console.error("Error during login:", err);
-            return res.status(500).json({ error: "An error occurred. Please try again." });
-        }
-
-        if (results.length > 0) {
-            // Save user details in session
-            req.session.user = results[0];
-            return res.redirect("/index.html");
-        } else {
-            res.redirect("/login?error=Invalid username or password");
-        }
-    });
-});
-
-// Logout Endpoint
-app.post("/logout", (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            console.error("Error during logout:", err);
-            return res.status(500).json({ error: "Logout failed. Please try again." });
-        }
-        res.redirect("/index.html");
-    });
-});
-
-// Serve the index.html file
-app.get("/index.html", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html")); // Ensure index.html is in the same directory as server.js
-});
-
-// Session Status Endpoint
-app.get("/session-status", (req, res) => {
-    if (req.session.user) {
-        res.json({ loggedIn: true, user: req.session.user });
+    if (results.length > 0) {
+      // Product already in cart, update quantity
+      const cartItemId = results[0].id;
+      db.query('UPDATE cart SET quantity = quantity + 1 WHERE id = ?', [cartItemId], (err) => {
+        if (err) return res.status(500).json({ error: 'Failed to update cart' });
+        res.status(200).json({ message: 'Product quantity updated in cart' });
+      });
     } else {
-        res.json({ loggedIn: false });
+      // Product not in cart, add it
+      db.query('INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)', [user_id, product_id, 1], (err) => {
+        if (err) return res.status(500).json({ error: 'Failed to add product to cart' });
+        res.status(200).json({ message: 'Product added to cart' });
+      });
     }
+  });
 });
 
-// Start the server
-app.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
