@@ -1,38 +1,24 @@
-create database mydb;
+INSERT INTO products (name, description, price, image_url, category) VALUES
+-- Camera Products
+('Alpha 7 IV Body Only', 'High-resolution Alpha 7 IV camera body only', 2999.00, 'camera/03_DSC-RX100M7.jpg', 'Camera'),
+('Alpha 9 with Lens Kit', 'Alpha 9 camera with lens kit', 3499.00, 'camera/529_category.jpg', 'Camera'),
+('Alpha 7c with Accessories', 'Alpha 7c camera with essential accessories', 3799.00, 'camera/silver_ILCE-7CM2_whatshot.jpg', 'Camera'),
+('ZEISS with Pro Kit', 'ZEISS professional camera with pro kit', 4299.00, 'camera/ZV-1m2.jpg', 'Camera'),
+('Alpha 5', 'Alpha 5 camera', 2000.00, 'camera/cam1.jpg', 'Camera'),
+('RX10S', 'RX10S camera', 3199.00, 'camera/cam2.jpg', 'Camera'),
 
-use mydb;
+-- TV Products
+('BRAVIA 3', 'Sony BRAVIA 3 TV', 2999.00, 'tv/TVFY24_Category_Golden_Area_UE.jpg', 'TV'),
+('BRAVIA 7', 'Sony BRAVIA 7 TV', 3499.00, 'tv/TVFY24_Category_Golden_Area_UH.jpg', 'TV'),
+('BRAVIA 8', 'Sony BRAVIA 8 TV', 3799.00, 'tv/TVFY24_Category_Golden_Area_UM.jpg', 'TV'),
+('BRAVIA 9', 'Sony BRAVIA 9 TV', 4299.00, 'tv/TVFY24_Category_Golden_Area_UP.jpg', 'TV'),
+('XBR', 'Sony XBR TV', 3299.00, 'tv/tv1.jpg', 'TV'),
+('X95', 'Sony X95 TV', 2299.00, 'tv/tv2.jpg', 'TV'),
 
-
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  `phone` VARCHAR(45) NULL,
-  `dob` DATE NULL,
-  `password` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-CREATE TABLE products (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    price DECIMAL(10, 2) NOT NULL,
-    image_url VARCHAR(255)
-);
-
-
-CREATE TABLE cart (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT DEFAULT 1,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-);
-
-select * from users;
-
-
+-- Audio Products
+('XM4', 'Sony XM4 headphones', 299.00, 'audio/WH1000XM4Black_600x.jpg', 'Audio'),
+('XM5', 'Sony XM5 headphones', 349.00, 'audio/WH1000XM5_Black_600x.jpg', 'Audio'),
+('ULT FIELD 7', 'Sony ULT FIELD 7 headphones', 3799.00, 'audio/ULTField7MAIN_600x.jpg', 'Audio'),
+('WF-LS900N', 'Sony WF-LS900N headphones', 4299.00, 'audio/Primary_image_Pink-1.jpg', 'Audio'),
+('SRS-XV900', 'Sony SRS-XV900 speakers', 2299.00, 'audio/aud1.jpg', 'Audio'),
+('NWE394/R', 'Sony NWE394/R walkman', 3299.00, 'audio/aud2.jpg', 'Audio');
