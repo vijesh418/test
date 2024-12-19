@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="cart.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -42,64 +43,25 @@
         <h1>Your Shopping Cart</h1>
 
         <!-- Cart Table -->
-        <table class="cart-table">
+        <table class="cart-table" id="cart-table">
             <thead>
                 <tr>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Cart Item 1 -->
-                <tr>
-                    <td>
-                        <img src="https://via.placeholder.com/60" alt="Product Image">
-                        <span class="cart-item-name">Product 1</span>
-                        <p class="cart-item-price">$15.00</p>
-                    </td>
-                    <td>$15.00</td>
-                    <td>
-                        <input type="number" value="1" min="1" max="10" style="width: 60px;">
-                    </td>
-                    <td>$15.00</td>
-                </tr>
-
-                <!-- Cart Item 2 -->
-                <tr>
-                    <td>
-                        <img src="https://via.placeholder.com/60" alt="Product Image">
-                        <span class="cart-item-name">Product 2</span>
-                        <p class="cart-item-price">$25.00</p>
-                    </td>
-                    <td>$25.00</td>
-                    <td>
-                        <input type="number" value="1" min="1" max="10" style="width: 60px;">
-                    </td>
-                    <td>$25.00</td>
-                </tr>
-
-                <!-- Cart Item 3 -->
-                <tr>
-                    <td>
-                        <img src="https://via.placeholder.com/60" alt="Product Image">
-                        <span class="cart-item-name">Product 3</span>
-                        <p class="cart-item-price">$10.00</p>
-                    </td>
-                    <td>$10.00</td>
-                    <td>
-                        <input type="number" value="1" min="1" max="10" style="width: 60px;">
-                    </td>
-                    <td>$10.00</td>
-                </tr>
+            <tbody id="cart-items">
+                <!-- Cart items will be inserted here dynamically -->
             </tbody>
         </table>
 
         <!-- Cart Total -->
         <div class="cart-total">
             <span>Total:</span>
-            <span>$50.00</span>
+            <span id="total-price">$0.00</span>
         </div>
 
         <!-- Buttons -->
@@ -139,7 +101,70 @@
             </div>
         </div>
     </footer>
-   
+
+    <script>
+        // Fetch the cart data from the server and update the cart
+        $(document).ready(function() {
+            $.get("/get-cart", function(data) {
+                if (data.loggedIn) {
+                    updateCart(data.cart);
+                } else {
+                    alert("Please log in to view your cart.");
+                    window.location.href = "/login";
+                }
+            });
+
+            // Update the cart table and calculate the total
+            function updateCart(cart) {
+                let total = 0;
+                $('#cart-items').empty();
+
+                cart.forEach(item => {
+                    const totalPrice = item.price * item.quantity;
+                    total += totalPrice;
+
+                    const cartRow = `
+                        <tr data-id="${item.id}">
+                            <td>
+                                <img src="${item.image_url}" alt="Product Image">
+                                <span class="cart-item-name">${item.name}</span>
+                            </td>
+                            <td>$${item.price}</td>
+                            <td>
+                                <input type="number" value="${item.quantity}" min="1" max="10" class="quantity" data-id="${item.id}">
+                            </td>
+                            <td>$${totalPrice.toFixed(2)}</td>
+                            <td><button class="remove-item" data-id="${item.id}">Remove</button></td>
+                        </tr>
+                    `;
+                    $('#cart-items').append(cartRow);
+                });
+
+                $('#total-price').text(`$${total.toFixed(2)}`);
+            }
+
+            // Update quantity and recalculate the total
+            $('#cart-items').on('change', '.quantity', function() {
+                const id = $(this).data('id');
+                const quantity = $(this).val();
+
+                // Send updated quantity to server
+                $.post('/update-cart', { id, quantity }, function(data) {
+                    updateCart(data.cart);
+                });
+            });
+
+            // Remove item from cart
+            $('#cart-items').on('click', '.remove-item', function() {
+                const id = $(this).data('id');
+
+                // Remove item from cart on the server
+                $.post('/remove-from-cart', { id }, function(data) {
+                    updateCart(data.cart);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
