@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sony</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="shopstyle.css">
 </head>
@@ -15,6 +17,7 @@
   <nav>
       <div>
         <a href="index.html">
+          <!-- Logo Image -->
           <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG" alt="">
         </a>
       </div>
@@ -31,30 +34,237 @@
       </div>
   </nav>
 </header>
+ 
 
-<!-- Shop Content -->
-<div class="section-heading">
-    <span>🔥Year End Exclusive Prices at Sony store!🏷️</span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<!-- Camera Products -->
-<div class="carousel-container">
-    <h2 class="shophead">Camera</h2>
-    <div class="carousel-wrapper">
-        <div class="carousel" id="carousel1">
-            <div class="carousel-item">
-                <img src="camera/03_DSC-RX100M7.jpg" alt="Camera 1">
-                <p>Alpha 7 IV Body Only</p>
-                <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
-                <button class="add-to-cart" data-product-id="1">Add To Cart</button>
+    <div class="section-heading">
+        <span>🔥Year End Exclusive Prices at sony store!🏷️</span>
+    </div>
+
+    <!-- Carousel 1: Camera -->
+    <div class="carousel-container">
+        <h2 class="shophead">Camera</h2>
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel1">
+                <div class="carousel-item">
+                    <img src="camera/03_DSC-RX100M7.jpg" alt="Camera 1">
+                    <p>Alpha 7 IV Body Only</p>
+                    <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
+                    <button class="add-to-cart" data-product-id="1">Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera/529_category.jpg" alt="Camera 2">
+                    <p>Alpha 9  with Lens Kit</p>
+                    <p class="price"><span class="discounted">$3,499.00</span> <span class="original">$4,199.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera/silver_ILCE-7CM2_whatshot.jpg" alt="Camera 3">
+                    <p>Alpha 7c with Accessories</p>
+                    <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera/ZV-1m2.jpg" alt="Camera 4">
+                    <p>ZEISS with Pro Kit</p>
+                    <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera/cam1.jpg" alt="Camera 4">
+                    <p>Alpha 5  </p>
+                    <p class="price"><span class="discounted">$2,000.00</span> <span class="original">$5,099.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="camera/cam2.jpg" alt="Camera 4">
+                    <p>RX10S</p>
+                    <p class="price"><span class="discounted">$3,199.00</span> <span class="original">$5,099.00</span></p>
+                    <button>Add To Cart</button>
+                </div>
             </div>
-            <!-- Other products... -->
+        </div>
+        <button class="prev" onclick="prevSlide('carousel1', 3)">&#10094;</button>
+        <button class="next" onclick="nextSlide('carousel1', 3)">&#10095;</button>
+    </div>
+
+    <div class="section-heading">
+        <span>Unbeatable Deals on TV</span>
+    </div>
+
+        <!-- Carousel 2 :TV -->
+        <div class="carousel-container">
+            <h2 class="shophead">TV</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel" id="carousel2">
+                    <div class="carousel-item">
+                        <img src="tv/TVFY24_Category_Golden_Area_UE.jpg" alt="TV 1">
+                        <p>BRAVIA 3</p>
+                        <p class="price"><span class="discounted">$2,999.00</span> <span class="original">$3,669.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tv/TVFY24_Category_Golden_Area_UH.jpg" alt="TV 2">
+                        <p>BRAVIA 7</p>
+                        <p class="price"><span class="discounted">$3,499.00</span> <span class="original">$4,199.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tv/TVFY24_Category_Golden_Area_UM.jpg" alt="TV 3">
+                        <p>BRAVIA 8</p>
+                        <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tv/TVFY24_Category_Golden_Area_UP.jpg" alt="TV 4">
+                        <p>BRAVIA 9</p>
+                        <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tv/tv1.jpg" alt="TV 4">
+                        <p>XBR</p>
+                        <p class="price"><span class="discounted">$3,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tv/tv2.jpg" alt="TV 4">
+                        <p>X95</p>
+                        <p class="price"><span class="discounted">$2,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            <button class="prev" onclick="prevSlide('carousel2', 3)">&#10094;</button>
+            <button class="next" onclick="nextSlide('carousel2', 3)">&#10095;</button>
+        </div>
+
+
+        <div class="section-heading">
+            <span>Audio Favorites at the Best Prices</span>
+        </div>
+  
+        <!-- Carousel 3:audio -->
+        <div class="carousel-container">
+            <h2 class="shophead">AUDIO</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel" id="carousel3">
+                    <div class="carousel-item">
+                        <img src="audio/WH1000XM4Black_600x.jpg" alt="AUD 1">
+                        <p>XM4</p>
+                        <p class="price"><span class="discounted">$299.00</span> <span class="original">$3,669.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="audio/WH1000XM5_Black_600x.jpg" alt="AUD 2">
+                        <a href="product.html"><button class="prdname">XM5</button></a>
+                        <p class="price"><span class="discounted">$349.00</span> <span class="original">$4,199.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="audio/ULTField7MAIN_600x.jpg" alt="AUD 4">
+                        <p>ULT FIELD 7</p>
+                        <p class="price"><span class="discounted">$3,799.00</span> <span class="original">$4,599.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="audio/Primary_image_Pink-1.jpg" alt="AUD 3">
+                        <p>WF-LS900N</p>
+                        <p class="price"><span class="discounted">$4,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="audio/aud1.jpg" alt="AUD 3">
+                        <p>SRS-XV900</p>
+                        <p class="price"><span class="discounted">$2,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="audio/aud2.jpg" alt="AUD 3">
+                        <p>NWE394/R</p>
+                        <p class="price"><span class="discounted">$3,299.00</span> <span class="original">$5,099.00</span></p>
+                        <button>Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            <button class="prev" onclick="prevSlide('carousel3', 3)">&#10094;</button>
+            <button class="next" onclick="nextSlide('carousel3', 3)">&#10095;</button>
+        </div>
+
+        <!-- New Products -->
+<section class="new-products">
+    <h2 >New Products</h2>
+    <div class="product-list">
+        <div class="product-item">
+            <img src="audio/4_D.jpg" style="width: 180px;height: 150px; object-fit: cover;" alt="New Product 1">
+            <h3>New Product 1</h3>
+            <p>$49.99</p>
+        </div>
+        <div class="product-item">
+            <img src="camera/CX64210_VCT-SGR1_Selfie_01-removebg-preview_300x.jpg" alt="New Product 2">
+            <h3>New Product 2</h3>
+            <p>$59.99</p>
+        </div>
+        <div class="product-item">
+            <img src="audio/WH-ULT900NBlackMAIN_600x.jpg" alt="New Product 3">
+            <h3>New Product 3</h3>
+            <p>$69.99</p>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Script to handle add to cart functionality -->
 <script>
+// Tracks the current position of each carousel
+const carouselIndices = {};
+
+// Initialize each carousel
+document.querySelectorAll('.carousel').forEach(carousel => {
+    const id = carousel.id;
+    carouselIndices[id] = 0;
+});
+
+function showSlide(carouselId, itemsPerSlide) {
+    const carousel = document.getElementById(carouselId);
+    const totalItems = carousel.querySelectorAll('.carousel-item').length;
+
+    // Ensure the index wraps around
+    const maxIndex = Math.ceil(totalItems / itemsPerSlide) - 1;
+    if (carouselIndices[carouselId] > maxIndex) {
+        carouselIndices[carouselId] = 0; // Reset to first slide
+    } else if (carouselIndices[carouselId] < 0) {
+        carouselIndices[carouselId] = maxIndex; // Go to last slide
+    }
+
+    const offset = -carouselIndices[carouselId] * 100; // Slide width is 100%
+    carousel.style.transform = `translateX(${offset}%)`;
+}
+
+function nextSlide(carouselId, itemsPerSlide) {
+    carouselIndices[carouselId]++;
+    showSlide(carouselId, itemsPerSlide);
+}
+
+function prevSlide(carouselId, itemsPerSlide) {
+    carouselIndices[carouselId]--;
+    showSlide(carouselId, itemsPerSlide);
+}
+
+// Initialize slides
+document.querySelectorAll('.carousel').forEach(carousel => {
+    const id = carousel.id;
+    showSlide(id, 3); // Set to 3 items per slide
+});
+
+
 // Function to add product to cart
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', async function() {
@@ -76,13 +286,43 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
         }
     });
 });
+
 </script>
+
+
 
 <!-- Footer -->
 <footer>
-    <!-- Footer content -->
+    <div class="footer-content">
+        <div>
+            <h3>About Us</h3>
+            <p>We are a leading provider of high-quality products. Our goal is to offer the best online shopping experience.</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Email: contact@productwebsite.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+        <div class="connect">
+            <h3>Connect with Us</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 </footer>
+
 
 </body>
 </html>
-
