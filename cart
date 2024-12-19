@@ -149,13 +149,21 @@
     });
 
     // Remove item
-    $('#cart-items').on('click', '.remove-item', function() {
-        const cart_item_id = $(this).data('id');
+ // Correct event delegation
+$('#cart-items').on('click', '.remove-item', function() {
+    const cart_item_id = $(this).data('id'); // Get the item ID from the button
 
-        $.post('/cart-action', { action: 'remove', cart_item_id }, function(response) {
-            updateCart(response.cart);
-        });
+    // Send a request to remove the item
+    $.post('/remove-from-cart', { cart_item_id }, function(response) {
+        if (response.error) {
+            alert('Failed to remove item from cart.');
+        } else {
+            fetchCart(); // Refresh the cart
+        }
+    }).fail(function() {
+        alert('Error removing item.');
     });
+});
 
     // Initial fetch
     fetchCart();
