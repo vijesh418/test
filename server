@@ -121,7 +121,7 @@ app.post('/add-to-cart', (req, res) => {
     const { product_id } = req.body;
   
     // Get the logged-in user's id from session or JWT (this is a placeholder)
-    const user_id = req.session.user_id; // Replace with actual user authentication method
+    const user_id = req.session.user?.id; // Replace with actual user authentication method
   
     if (!user_id) {
       return res.status(401).json({ error: 'User not logged in' });
