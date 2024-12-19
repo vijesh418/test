@@ -1,22 +1,179 @@
-// Correct event delegation
-$('#cart-items').on('click', '.remove-item', function() {
-    const cart_item_id = $(this).data('id'); // Get the item ID from the button
+const express = require("express");
+const mysql = require("mysql2");
+const path = require("path");
+const session = require("express-session");
 
-    // Send a request to remove the item
-    $.post('/remove-from-cart', { cart_item_id }, function(response) {
-        if (response.error) {
-            alert('Failed to remove item from cart.');
-        } else {
-            fetchCart(); // Refresh the cart
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // To parse form data
+
+// Serve static files from the current directory
+app.use(express.static(path.join(__dirname))); // Serves files from the root project folder
+
+// MySQL Connection
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root", // Replace with your MySQL username
+    password: "sony123", // Replace with your MySQL password
+    database: "mydb",
+});
+
+db.connect(err => {
+    if (err) {
+        console.error("Error connecting to MySQL:", err.message);
+        return;
+    }
+    console.log("Connected to MySQL database");
+});
+
+// Configure sessions
+app.use(
+    session({
+        secret: "yourSecretKey",
+        resave: false,
+        saveUninitialized: true,
+    })
+);
+
+// Serve the signup.html file
+app.get("/signup", (req, res) => {
+    res.sendFile(path.join(__dirname, "signup.html")); // Ensure signup.html is in the same directory as server.js
+});
+
+// Signup Endpoint
+app.post("/signup", (req, res) => {
+    const { email, first_name, last_name, phone, dob, password, confirm_password } = req.body;
+
+    // Check if passwords match
+    if (password !== confirm_password) {
+        return res.status(400).json({ error: "Passwords do not match" });
+    }
+
+    // Insert into database
+    const sql = "INSERT INTO users (email, first_name, last_name, phone, dob, password) VALUES (?, ?, ?, ?, ?, ?)";
+    db.query(
+        sql,
+        [email, first_name, last_name, phone, dob, password],
+        (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: "Error signing up" });
+            }
+            res.status(201).json({ message: "Signup successful", userId: result.insertId });
         }
-    }).fail(function() {
-        alert('Error removing item.');
+    );
+});
+
+// Serve the login.html file
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "login.html")); // Ensure login.html is in the same directory as server.js
+});
+
+// Login Endpoint
+app.post("/login", (req, res) => {
+    const { username, password } = req.body;
+
+    // Query database for user credentials
+    const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    db.query(sql, [username, password], (err, results) => {
+        if (err) {
+            console.error("Error during login:", err);
+            return res.status(500).json({ error: "An error occurred. Please try again." });
+        }
+
+        if (results.length > 0) {
+            // Save user details in session
+            req.session.user = results[0];
+            return res.redirect("/index.html");
+        } else {
+            res.redirect("/login?error=Invalid username or password");
+        }
     });
 });
 
+// Logout Endpoint
+app.post("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error("Error during logout:", err);
+            return res.status(500).json({ error: "Logout failed. Please try again." });
+        }
+        res.redirect("/index.html");
+    });
+});
+
+// Serve the index.html file
+app.get("/index.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html")); // Ensure index.html is in the same directory as server.js
+});
+
+// Session Status Endpoint
+app.get("/session-status", (req, res) => {
+    if (req.session.user) {
+        res.json({ loggedIn: true, user: req.session.user });
+    } else {
+        res.json({ loggedIn: false });
+    }
+});
+
+// Add product to cart or update quantity
+app.post('/add-to-cart', (req, res) => {
+    const { product_id } = req.body;
+  
+    // Get the logged-in user's id from session or JWT (this is a placeholder)
+    const user_id = req.session.user?.id; // Replace with actual user authentication method
+  
+    if (!user_id) {
+      return res.status(401).json({ error: 'User not logged in' });
+    }
+  
+    // Check if the product is already in the cart
+    db.query('SELECT * FROM cart WHERE user_id = ? AND product_id = ?', [user_id, product_id], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error' });
+  
+      if (results.length > 0) {
+        // Product already in cart, update quantity
+        const cartItemId = results[0].id;
+        db.query('UPDATE cart SET quantity = quantity + 1 WHERE id = ?', [cartItemId], (err) => {
+          if (err) return res.status(500).json({ error: 'Failed to update cart' });
+          res.status(200).json({ message: 'Product quantity updated in cart' });
+        });
+      } else {
+        // Product not in cart, add it
+        db.query('INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)', [user_id, product_id, 1], (err) => {
+          if (err) return res.status(500).json({ error: 'Failed to add product to cart' });
+          res.status(200).json({ message: 'Product added to cart' });
+        });
+      }
+    });
+  });
 
 
+  // Get products in cart for the logged-in user
+app.get('/cart', (req, res) => {
+    const user_id = req.session.user?.id;
 
+    if (!user_id) {
+        return res.status(401).json({ error: 'User not logged in' });
+    }
+
+    const sql = `
+        SELECT cart.id, products.name, products.price, products.image_url, cart.quantity 
+        FROM cart 
+        JOIN products ON cart.product_id = products.id 
+        WHERE cart.user_id = ?
+    `;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error retrieving cart items' });
+        }
+
+        res.json(results);
+    });
+});
+
+// Remove product from cart
 app.post('/remove-from-cart', (req, res) => {
     const { cart_item_id } = req.body;
     const user_id = req.session.user?.id;
@@ -34,4 +191,34 @@ app.post('/remove-from-cart', (req, res) => {
         }
         res.status(200).json({ message: 'Product removed from cart' });
     });
+});
+
+// Calculate total price in cart
+app.get('/cart-total', (req, res) => {
+    const user_id = req.session.user?.id;
+
+    if (!user_id) {
+        return res.status(401).json({ error: 'User not logged in' });
+    }
+
+    const sql = `
+        SELECT SUM(products.price * cart.quantity) AS total
+        FROM cart
+        JOIN products ON cart.product_id = products.id
+        WHERE cart.user_id = ?
+    `;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error calculating total price' });
+        }
+
+        const total = results[0].total || 0;
+        res.json({ total });
+    });
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
 });
