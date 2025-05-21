@@ -1,0 +1,60 @@
+using namespace System.Net
+
+# Input bindings are passed in via param block
+param ($Request, $TriggerMetadata)
+
+# Initialize variables
+$StatusCode = [HttpStatusCode]::OK
+$body = $null
+
+# Setting variables from HTTP request body
+$User = $Request.Body.User
+$NewPassword = $Request.Body.NewPassword
+
+# Random password generator info
+$chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@123456789!@#&*"
+$passwordLength = 12
+
+# Setting HTTP request details
+$resetURI = "https://graph.microsoft.com/v1.0/users/$User"
+
+Write-Output "Processing password reset for $User"
+Write-Output "Getting authorization token"
+
+# Get the token and convert to plain text
+$token = (Get-AzAccessToken -ResourceTypeName 'MSGraph' -AsSecureString).Token | ConvertFrom-SecureString -AsPlainText
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type" = "application/json"
+}
+
+# Generate random password if not provided in request body
+if (-not $NewPassword) {
+    Write-Output "Generating random password"
+    $NewPassword = -join (Get-Random -Count $passwordLength -InputObject $chars.ToCharArray())
+}
+
+# Prepare body for password reset request
+$resetBody = @{
+    passwordProfile = @{
+        forceChangePasswordNextSignIn = $true
+        password = $NewPassword
+    }
+} | ConvertTo-Json -Depth 3
+
+try {
+    Write-Output "Attempting password reset"
+    Invoke-RestMethod -Method Patch -Uri $resetURI -Headers $headers -Body $resetBody -ErrorAction Stop
+    $body = "Successfully reset password to $NewPassword"
+}
+catch {
+    $body = ($_.Exception.Message)
+    $StatusCode = [HttpStatusCode]::BadRequest
+}
+
+# Return response
+Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    StatusCode = $StatusCode
+    Body = $body
+})
